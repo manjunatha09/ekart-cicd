@@ -197,6 +197,7 @@ pipeline {
                     echo "======================================"
 
                     kubectl apply -f ${K8S_DEPLOYMENT_FILE}
+                    kubectl apply -f kubernetes/service.yaml    
                 """
             }
         }
