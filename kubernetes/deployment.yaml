@@ -24,7 +24,7 @@ spec:
           # Jenkins is the ONLY thing that edits this line. It rewrites the
           # tag to the current Jenkins BUILD_NUMBER and commits the change,
           # which is what Argo CD then detects and syncs.
-          image: manja098/ekart:1
+          image: manja098/ekart:11
           ports:
             - containerPort: 8070
           resources:
