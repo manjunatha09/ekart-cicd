@@ -1,0 +1,28 @@
+# --- Terraform ---
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+!terraform.tfvars.example
+.terraform.lock.hcl
+
+# --- Secrets ---
+*.pem
+*.key
+.env
+
+# --- Maven / Java ---
+app/target/
+*.class
+
+# --- OWASP / Trivy reports ---
+app/dependency-check-report.*
+app/trivy-*-report.txt
+
+# --- OS / editor ---
+.DS_Store
+*.swp
+.idea/
+.vscode/

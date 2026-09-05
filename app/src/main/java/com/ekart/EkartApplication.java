@@ -1,0 +1,466 @@
+package com.ekart;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.net.InetAddress;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+@SpringBootApplication
+@RestController
+public class EkartApplication {
+
+    // Bump this value (and only this value) to demonstrate the CI/CD pipeline
+    // building a new image, Argo CD syncing it, and the rolling update
+    // taking effect on the running pods. It shows up live in the status bar
+    // at the top of the page.
+    private static final String APP_VERSION = "1";
+
+    public static void main(String[] args) {
+        SpringApplication.run(EkartApplication.class, args);
+    }
+
+    @GetMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
+    public String home() {
+        String hostname;
+        try {
+            // On Kubernetes this resolves to the pod name, which is what
+            // makes the status bar a genuine "this is really running"
+            // signal rather than a static screenshot.
+            hostname = InetAddress.getLocalHost().getHostName();
+        } catch (Exception e) {
+            hostname = "unknown";
+        }
+        String timestamp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now());
+
+        return PAGE_TEMPLATE
+                .replace("{{VERSION}}", APP_VERSION)
+                .replace("{{HOSTNAME}}", hostname)
+                .replace("{{TIMESTAMP}}", timestamp);
+    }
+
+    private static final String PAGE_TEMPLATE = """
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Manjunatha C — Cloud & DevOps Engineer</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+            <style>
+              :root {
+                --bg: #0D0B1E;
+                --surface: #16132B;
+                --text: #F4F1FF;
+                --muted: #A79FC9;
+                --accent: #38F2C4;
+                --pink: #FF4FA3;
+                --violet: #8B5CF6;
+                --orange: #FB923C;
+                --rule: #2C2650;
+                --maxw: 760px;
+              }
+              * { box-sizing: border-box; }
+              html { scroll-behavior: smooth; }
+              body {
+                margin: 0;
+                background:
+                  radial-gradient(circle at 12% 8%, rgba(255,79,163,0.16), transparent 40%),
+                  radial-gradient(circle at 88% 18%, rgba(139,92,246,0.18), transparent 42%),
+                  radial-gradient(circle at 50% 85%, rgba(56,242,196,0.10), transparent 45%),
+                  var(--bg);
+                color: var(--text);
+                font-family: 'Space Grotesk', system-ui, sans-serif;
+                line-height: 1.6;
+                -webkit-font-smoothing: antialiased;
+              }
+              a { color: var(--accent); text-decoration: none; }
+              a:hover { text-decoration: underline; }
+              a:focus-visible, button:focus-visible {
+                outline: 2px solid var(--accent);
+                outline-offset: 3px;
+              }
+
+              .statusbar {
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+                flex-wrap: wrap;
+                background: var(--surface);
+                border-bottom: 1px solid var(--rule);
+                padding: 0.55rem 1.25rem;
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 0.78rem;
+                color: var(--muted);
+              }
+              .statusbar .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--accent);
+                display: inline-block;
+                animation: pulse 2.4s ease-in-out infinite;
+              }
+              .statusbar strong { color: var(--text); font-weight: 500; }
+              .statusbar .sep { color: var(--rule); }
+              @keyframes pulse {
+                0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(56,242,196,0.45); }
+                50% { opacity: 0.55; box-shadow: 0 0 0 5px rgba(56,242,196,0); }
+              }
+
+              main {
+                max-width: var(--maxw);
+                margin: 0 auto;
+                padding: 3.5rem 1.5rem 4rem;
+              }
+
+              .hero {
+                animation: rise 0.6s ease-out both;
+              }
+              @keyframes rise {
+                from { opacity: 0; transform: translateY(10px); }
+                to   { opacity: 1; transform: translateY(0); }
+              }
+              .hero h1 {
+                font-family: 'Fredoka', 'Space Grotesk', system-ui, sans-serif;
+                font-size: clamp(2.4rem, 6vw, 3.4rem);
+                font-weight: 700;
+                margin: 0 0 0.4rem;
+                letter-spacing: -0.01em;
+                background: linear-gradient(90deg, var(--pink), var(--violet) 55%, var(--accent));
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+              }
+              .hero .role {
+                font-size: 1.08rem;
+                color: var(--text);
+                margin: 0 0 1.1rem;
+                font-weight: 500;
+                display: inline-block;
+                padding: 0.25rem 0.75rem;
+                border-radius: 999px;
+                background: rgba(139,92,246,0.16);
+                border: 1px solid rgba(139,92,246,0.35);
+              }
+              .hero p.objective {
+                color: var(--muted);
+                font-size: 1.02rem;
+                max-width: 62ch;
+                margin: 0 0 1.6rem;
+              }
+              .contact-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4rem 1.1rem;
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 0.85rem;
+              }
+              .contact-row span { color: var(--muted); }
+
+              section {
+                border-top: 1px solid var(--rule);
+                padding: 2.6rem 0;
+              }
+              section h2 {
+                font-size: 1.05rem;
+                font-weight: 600;
+                margin: 0 0 1.3rem;
+              }
+              section p { color: var(--muted); margin: 0 0 0.9rem; }
+
+              .pipeline {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 0.4rem 0.5rem;
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 0.82rem;
+                color: var(--text);
+                margin: 1.2rem 0 1.4rem;
+              }
+              .pipeline .stage {
+                background: rgba(139,92,246,0.10);
+                border: 1px solid rgba(139,92,246,0.3);
+                border-radius: 999px;
+                padding: 0.35rem 0.7rem;
+              }
+              .pipeline .arrow { color: var(--pink); }
+
+              .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.6rem;
+              }
+              .skills-grid h3 {
+                font-size: 0.82rem;
+                font-weight: 600;
+                margin: 0 0 0.7rem;
+                text-transform: none;
+              }
+              .skills-grid.networking h3 { color: var(--pink); }
+              .skills-grid.aws h3 { color: var(--violet); }
+              .skills-grid.devops h3 { color: var(--accent); }
+              .chips {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4rem;
+              }
+              .chip {
+                font-size: 0.78rem;
+                padding: 0.3rem 0.65rem;
+                border-radius: 999px;
+                white-space: nowrap;
+                transition: transform 0.15s ease;
+              }
+              .chip:hover { transform: translateY(-2px) scale(1.04); }
+              .chip.pink   { background: rgba(255,79,163,0.14); color: #FFB4DC; border: 1px solid rgba(255,79,163,0.35); }
+              .chip.violet { background: rgba(139,92,246,0.14); color: #C9B8FF; border: 1px solid rgba(139,92,246,0.35); }
+              .chip.lime   { background: rgba(56,242,196,0.14); color: #9CF5DF; border: 1px solid rgba(56,242,196,0.35); }
+              @media (max-width: 680px) {
+                .skills-grid { grid-template-columns: 1fr; }
+              }
+
+              .project {
+                margin-bottom: 1.6rem;
+                padding-bottom: 1.6rem;
+                border-bottom: 1px solid var(--rule);
+              }
+              .project:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+              .project h3 {
+                font-size: 1rem;
+                font-weight: 600;
+                margin: 0 0 0.3rem;
+              }
+              .project .meta {
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 0.78rem;
+                color: var(--muted);
+                margin-bottom: 0.5rem;
+              }
+              .project ul {
+                margin: 0.5rem 0 0;
+                padding-left: 1.1rem;
+                color: var(--muted);
+                font-size: 0.92rem;
+              }
+              .project li { margin-bottom: 0.35rem; }
+
+              .entry { margin-bottom: 1.4rem; }
+              .entry:last-child { margin-bottom: 0; }
+              .entry h3 { font-size: 1rem; font-weight: 600; margin: 0 0 0.2rem; }
+              .entry .meta {
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 0.78rem;
+                color: var(--muted);
+                margin-bottom: 0.5rem;
+              }
+              .entry ul {
+                margin: 0.4rem 0 0;
+                padding-left: 1.1rem;
+                color: var(--muted);
+                font-size: 0.92rem;
+              }
+              .entry li { margin-bottom: 0.3rem; }
+
+              footer {
+                border-top: 1px solid var(--rule);
+                padding: 2rem 0 0;
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 0.8rem;
+                color: var(--muted);
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 0.6rem;
+              }
+
+              @media (prefers-reduced-motion: reduce) {
+                .hero, .statusbar .dot { animation: none; }
+              }
+            </style>
+            </head>
+            <body>
+
+              <div class="statusbar">
+                <span class="dot" aria-hidden="true"></span>
+                <strong>LIVE</strong>
+                <span class="sep">/</span>
+                <span>ekart v{{VERSION}}</span>
+                <span class="sep">/</span>
+                <span>pod: {{HOSTNAME}}</span>
+                <span class="sep">/</span>
+                <span>served {{TIMESTAMP}}</span>
+              </div>
+
+              <main>
+
+                <div class="hero">
+                  <h1>Manjunatha C</h1>
+                  <p class="role">Open to Cloud Engineering, DevOps &amp; Product Management roles</p>
+                  <p class="objective">
+                    I design and provision cloud infrastructure — networking, compute, and
+                    automation — using Terraform and AWS, and I'm just as drawn to the product
+                    decisions behind how systems get built. This page is served by one of the
+                    projects below: refresh it after a deploy and the status bar above will
+                    show the new version.
+                  </p>
+                  <div class="contact-row">
+                    <a href="mailto:manjuc.28.06@gmail.com">manjuc.28.06@gmail.com</a>
+                    <a href="https://github.com/manjunatha09" target="_blank" rel="noopener">github.com/manjunatha09</a>
+                    <a href="https://www.linkedin.com/in/manjunatha-c1/" target="_blank" rel="noopener">LinkedIn</a>
+                  </div>
+                </div>
+
+                <section>
+                  <h2>What's running here</h2>
+                  <p>
+                    This exact page is deployed through the pipeline below. A push to
+                    <code>main</code> runs the full loop automatically — no manual
+                    <code>kubectl apply</code> anywhere in it.
+                  </p>
+                  <div class="pipeline">
+                    <span class="stage">GitHub push</span>
+                    <span class="arrow">&rarr;</span>
+                    <span class="stage">Jenkins build + test</span>
+                    <span class="arrow">&rarr;</span>
+                    <span class="stage">SonarQube + Trivy scan</span>
+                    <span class="arrow">&rarr;</span>
+                    <span class="stage">Docker Hub</span>
+                    <span class="arrow">&rarr;</span>
+                    <span class="stage">manifest commit</span>
+                    <span class="arrow">&rarr;</span>
+                    <span class="stage">Argo CD sync</span>
+                    <span class="arrow">&rarr;</span>
+                    <span class="stage">Kubernetes</span>
+                  </div>
+                </section>
+
+                <section>
+                  <h2>Where I work</h2>
+                  <div class="skills-grid">
+                    <div class="networking">
+                      <h3>Networking</h3>
+                      <div class="chips">
+                        <span class="chip pink">TCP/IP</span>
+                        <span class="chip pink">OSI Model</span>
+                        <span class="chip pink">DNS</span>
+                        <span class="chip pink">DHCP</span>
+                        <span class="chip pink">Subnetting</span>
+                        <span class="chip pink">CIDR</span>
+                        <span class="chip pink">Routing &amp; Switching</span>
+                        <span class="chip pink">Network Security</span>
+                      </div>
+                    </div>
+                    <div class="aws">
+                      <h3>AWS Cloud</h3>
+                      <div class="chips">
+                        <span class="chip violet">EC2</span>
+                        <span class="chip violet">VPC</span>
+                        <span class="chip violet">S3</span>
+                        <span class="chip violet">IAM</span>
+                        <span class="chip violet">ALB/NLB</span>
+                        <span class="chip violet">Security Groups</span>
+                        <span class="chip violet">IGW</span>
+                        <span class="chip violet">Route Tables</span>
+                        <span class="chip violet">Elastic IP</span>
+                        <span class="chip violet">NAT Gateway</span>
+                        <span class="chip violet">Auto Scaling</span>
+                        <span class="chip violet">Route 53</span>
+                        <span class="chip violet">CloudWatch</span>
+                        <span class="chip violet">SSM</span>
+                        <span class="chip violet">Secrets Manager</span>
+                        <span class="chip violet">CloudFormation</span>
+                      </div>
+                    </div>
+                    <div class="devops">
+                      <h3>DevOps &amp; Tools</h3>
+                      <div class="chips">
+                        <span class="chip lime">Linux</span>
+                        <span class="chip lime">Bash</span>
+                        <span class="chip lime">Python</span>
+                        <span class="chip lime">Git</span>
+                        <span class="chip lime">GitHub</span>
+                        <span class="chip lime">Terraform</span>
+                        <span class="chip lime">IaC</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section>
+                  <h2>Projects</h2>
+
+                  <div class="project">
+                    <h3>ekart-cicd — GitOps CI/CD pipeline (this project)</h3>
+                    <div class="meta">Spring Boot · Jenkins · SonarQube · Trivy · Kubernetes (kubeadm) · Argo CD · Terraform on AWS</div>
+                    <ul>
+                      <li>Provisioned a full AWS environment with Terraform: VPC, EC2, security groups, and a Network Load Balancer in front of a self-managed Kubernetes cluster.</li>
+                      <li>Built a Jenkins pipeline that tests, scans (SonarQube, OWASP, Trivy), and pushes a versioned image, then commits the updated manifest.</li>
+                      <li>Wired Argo CD to auto-sync that manifest to Kubernetes, closing the loop from git push to running pods with no manual deploy step.</li>
+                    </ul>
+                    <div class="meta" style="margin-top:0.6rem;">
+                      <a href="https://github.com/manjunatha09/ekart-cicd" target="_blank" rel="noopener">github.com/manjunatha09/ekart-cicd</a>
+                    </div>
+                  </div>
+
+                  <div class="project">
+                    <h3>AWS Infrastructure Provisioning with Terraform</h3>
+                    <div class="meta">2026</div>
+                    <ul>
+                      <li>Provisioned highly available AWS infrastructure with Terraform, including VPC, EC2, subnets, security groups, and an Application Load Balancer.</li>
+                      <li>Automated EC2 web server deployment with Bash user-data scripts and integrated S3 with IAM roles for secure access.</li>
+                      <li>Applied Infrastructure as Code practices with version control and documentation in Git and GitHub.</li>
+                    </ul>
+                  </div>
+                </section>
+
+                <section>
+                  <h2>Experience</h2>
+                  <div class="entry">
+                    <h3>Freelance AI Data Contributor — CrowdGen by Appen</h3>
+                    <div class="meta">Remote, USA · Sep 2025 – Present</div>
+                    <ul>
+                      <li>Contributed to multilingual AI training projects, including Kannada-to-English speech recognition and transcription.</li>
+                      <li>Performed voice validation and language evaluation to support model accuracy.</li>
+                      <li>Ran data annotation and quality assurance against detailed project guidelines.</li>
+                      <li>Completed remote, project-based assignments independently across speech and language AI projects.</li>
+                    </ul>
+                  </div>
+                </section>
+
+                <section>
+                  <h2>Education</h2>
+                  <div class="entry">
+                    <h3>B.E., Computer Science and Design</h3>
+                    <div class="meta">Mysore University — School of Engineering · Sep 2023 – 2027</div>
+                    <p style="margin:0;">Relevant coursework: Data Structures and Algorithms, Operating Systems, Computer Networks, Cloud Computing, Programming in C/C++</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h2>Achievements &amp; activities</h2>
+                  <div class="entry">
+                    <ul>
+                      <li>Active participant in university hackathons and technical events focused on collaboration and problem-solving.</li>
+                      <li>2nd Prize, inter-college dance competition — teamwork, discipline, and coordination.</li>
+                    </ul>
+                  </div>
+                </section>
+
+              </main>
+
+              <footer>
+                <span>manjuc.28.06@gmail.com</span>
+                <span>Deployed automatically — refresh to see the latest build.</span>
+              </footer>
+
+            </body>
+            </html>
+            """;
+}

@@ -1,0 +1,51 @@
+# argocd/application.yaml
+#
+# This is the actual object that turns "Argo CD is running in the
+# cluster" into "Argo CD is managing ekart". An Application is a
+# Kubernetes Custom Resource (CRD installed by Argo CD itself) that tells
+# Argo CD:
+#   - source:      which Git repo/branch/path holds the desired manifests
+#   - destination: which cluster/namespace to apply them to
+#   - syncPolicy:  whether to sync automatically, and how to reconcile drift
+#
+# Without this object, Argo CD is just an idle control plane sitting in
+# the "argocd" namespace with nothing to watch. This is what wires it to
+# THIS project's kubernetes/deployment.yaml and service.yaml.
+#
+# Apply it once, manually:
+#   kubectl apply -f argocd/application.yaml
+#
+# (If you set `git_repo_url` in terraform.tfvars, the control-plane
+# bootstrap applies this automatically for you — see
+# terraform/infrastructure/user-data/kubernetes-master.sh — and you can
+# skip this manual step.)
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ekart-cicd
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/manjunatha09/ekart-cicd.git
+    targetRevision: main
+    # Only this folder is watched — Argo CD ignores app/, jenkins/,
+    # terraform/, etc. It only cares about the desired Kubernetes state.
+    path: kubernetes
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      # Deletes resources that are removed from Git.
+      prune: true
+      # Reverts any manual `kubectl edit`/`kubectl scale` drift back to
+      # what's in Git — this is what makes it "GitOps": Git, not kubectl,
+      # is the source of truth.
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

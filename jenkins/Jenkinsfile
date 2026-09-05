@@ -1,0 +1,163 @@
+// Jenkinsfile — ekart-cicd
+//
+// Flow: GitHub webhook -> Jenkins -> Maven -> SonarQube -> OWASP -> Trivy
+//       -> Docker build/push -> update kubernetes/deployment.yaml -> git
+//       push -> Argo CD detects the change and syncs Kubernetes.
+//
+// Jenkins never runs `kubectl apply`. It only ever pushes a manifest
+// change to Git; Argo CD owns the actual deployment (GitOps).
+//
+// IMPORTANT — avoiding a self-triggered loop:
+// Stage 12 commits back to this same repository with a message prefixed
+// "[ci skip]". The GitHub webhook / Jenkins trigger below is configured to
+// ignore commits whose message contains that marker, so Jenkins' own
+// manifest-update commit does not kick off a second build.
+
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+        disableConcurrentBuilds()
+    }
+
+    triggers {
+        // Requires the "GitHub" plugin + a webhook configured on the repo
+        // (Settings -> Webhooks -> payload URL: http://<jenkins>:8080/github-webhook/).
+        githubPush()
+    }
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')      // Jenkins credential ID
+        GITHUB_CREDENTIALS    = credentials('github')          // Jenkins credential ID
+        DOCKER_IMAGE          = "manja098/ekart"
+        SONAR_HOST_URL        = "http://<SONARQUBE_PUBLIC_IP>:9000"
+        K8S_DEPLOYMENT_FILE   = "kubernetes/deployment.yaml"
+    }
+
+    stages {
+
+        stage('Guard: skip bot commits') {
+            steps {
+                script {
+                    def lastMsg = sh(script: "git log -1 --pretty=%B", returnStdout: true).trim()
+                    if (lastMsg.contains('[ci skip]')) {
+                        echo "Last commit was a Jenkins manifest-update commit. Skipping pipeline."
+                        currentBuild.result = 'NOT_BUILT'
+                        error("Stopping: this commit was produced by Jenkins itself.")
+                    }
+                }
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Maven Build & Unit Tests') {
+            steps {
+                dir('app') {
+                    sh 'mvn -B clean verify'
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                dir('app') {
+                    withSonarQubeEnv('sonarqube-server') {
+                        sh """
+                            mvn -B sonar:sonar \
+                              -Dsonar.projectKey=ekart-cicd \
+                              -Dsonar.host.url=${SONAR_HOST_URL}
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('SonarQube Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
+        stage('OWASP Dependency Check') {
+            steps {
+                dir('app') {
+                    dependencyCheck additionalArguments: '--scan . --format HTML --format XML', odcInstallation: 'owasp-dc'
+                    dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                }
+            }
+        }
+
+        stage('Trivy Filesystem Scan') {
+            steps {
+                dir('app') {
+                    sh 'trivy fs --exit-code 0 --severity HIGH,CRITICAL --format table -o trivy-fs-report.txt .'
+                }
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                dir('app') {
+                    sh "docker build -t ${DOCKER_IMAGE}:${BUILD_NUMBER} ."
+                }
+            }
+        }
+
+        stage('Trivy Image Scan') {
+            steps {
+                sh "trivy image --exit-code 0 --severity HIGH,CRITICAL --format table -o trivy-image-report.txt ${DOCKER_IMAGE}:${BUILD_NUMBER}"
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                sh """
+                    echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
+                    docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}
+                """
+            }
+        }
+
+        stage('Update Kubernetes Manifest') {
+            steps {
+                sh """
+                    sed -i "s|image: ${DOCKER_IMAGE}:.*|image: ${DOCKER_IMAGE}:${BUILD_NUMBER}|g" ${K8S_DEPLOYMENT_FILE}
+                    cat ${K8S_DEPLOYMENT_FILE}
+                """
+            }
+        }
+
+        stage('Commit & Push Manifest') {
+            steps {
+                sh """
+                    git config user.email "jenkins@ekart-cicd.local"
+                    git config user.name "jenkins-bot"
+                    git add ${K8S_DEPLOYMENT_FILE}
+                    git commit -m "[ci skip] deploy: ${DOCKER_IMAGE}:${BUILD_NUMBER}" || echo "Nothing to commit"
+                    git push https://${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}@github.com/manjunatha09/ekart-cicd.git HEAD:main
+                """
+            }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker logout || true'
+            archiveArtifacts artifacts: 'app/trivy-*-report.txt, app/dependency-check-report.html', allowEmptyArchive: true
+        }
+        success {
+            echo "Build ${BUILD_NUMBER} pushed as ${DOCKER_IMAGE}:${BUILD_NUMBER}. Argo CD will pick up the manifest change and sync Kubernetes."
+        }
+        failure {
+            echo "Pipeline failed at build ${BUILD_NUMBER}. No image was pushed to the manifest, so the currently running version is untouched."
+        }
+    }
+}

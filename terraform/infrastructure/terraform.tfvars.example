@@ -1,0 +1,13 @@
+# Copy this file to terraform.tfvars and fill in your real values.
+# terraform.tfvars is gitignored — never commit your real public IP or
+# other personal values.
+
+aws_region    = "ap-south-1"
+key_pair_name = "awspem"
+
+# Get this from scripts/get-public-ip.sh, then append /32
+admin_cidr = "YOUR_PUBLIC_IP/32"
+
+# Set this to auto-apply argocd/application.yaml during the control-plane
+# bootstrap instead of applying it yourself afterward.
+git_repo_url = "https://github.com/manjunatha09/ekart-cicd.git"
