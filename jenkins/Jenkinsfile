@@ -12,17 +12,15 @@
 //   -> Trivy image scan
 //   -> Docker Hub
 //   -> update Kubernetes manifest
-//   -> GitHub
-//   -> Argo CD
+//   -> kubectl apply
 //   -> Kubernetes
+//   -> Worker 1 / Worker 2
 //
-// IMPORTANT:
-// Jenkins never runs `kubectl apply`.
-// Jenkins only updates the Kubernetes manifest in Git.
-// Argo CD owns the actual Kubernetes deployment.
+// Jenkins directly deploys to Kubernetes.
+// Argo CD is NOT used.
 //
-// [ci skip] prevents Jenkins' own manifest-update commit
-// from causing another CI build.
+// [ci skip] guard is kept for safety, although Jenkins
+// no longer creates a Git commit.
 
 pipeline {
     agent any
@@ -37,9 +35,9 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE        = "manja098/ekart"
-        SONAR_HOST_URL      = "http://13.233.196.193:9000"
-        K8S_DEPLOYMENT_FILE = "kubernetes/deployment.yaml"
+        DOCKER_IMAGE         = "manja098/ekart"
+        SONAR_HOST_URL       = "http://13.233.196.193:9000"
+        K8S_DEPLOYMENT_FILE  = "kubernetes/deployment.yaml"
     }
 
     stages {
@@ -59,7 +57,7 @@ pipeline {
                     ).trim()
 
                     if (lastMsg.contains('[ci skip]')) {
-                        echo "Last commit was produced by Jenkins."
+                        echo "Last commit contains [ci skip]."
                         echo "Skipping pipeline to prevent a CI loop."
 
                         currentBuild.result = 'NOT_BUILT'
@@ -182,51 +180,48 @@ pipeline {
                       "s|image: ${DOCKER_IMAGE}:.*|image: ${DOCKER_IMAGE}:${BUILD_NUMBER}|g" \
                       ${K8S_DEPLOYMENT_FILE}
 
-                    echo "Updated Kubernetes manifest:"
+                    echo "======================================"
+                    echo "Updated Kubernetes Manifest"
+                    echo "======================================"
+
                     cat ${K8S_DEPLOYMENT_FILE}
                 """
             }
         }
 
-        stage('Commit & Push Manifest') {
+        stage('Deploy to Kubernetes') {
             steps {
-                withCredentials([
-                    usernamePassword(
-                        credentialsId: 'github',
-                        usernameVariable: 'GITHUB_USER',
-                        passwordVariable: 'GITHUB_TOKEN'
-                    )
-                ]) {
-                    sh '''
-                        set +x
+                sh """
+                    echo "======================================"
+                    echo "Deploying EKART to Kubernetes"
+                    echo "======================================"
 
-                        git config user.email "jenkins@ekart-cicd.local"
-                        git config user.name "jenkins-bot"
+                    kubectl apply -f ${K8S_DEPLOYMENT_FILE}
+                """
+            }
+        }
 
-                        git add "$K8S_DEPLOYMENT_FILE"
+        stage('Verify Kubernetes Deployment') {
+            steps {
+                sh """
+                    echo "======================================"
+                    echo "Waiting for EKART rollout"
+                    echo "======================================"
 
-                        git commit \
-                          -m "[ci skip] deploy: ${DOCKER_IMAGE}:${BUILD_NUMBER}" \
-                          || echo "Nothing to commit"
+                    kubectl rollout status deployment/ekart --timeout=180s
 
-                        cat > "$WORKSPACE/git-askpass.sh" <<'EOF'
-#!/bin/sh
-case "$1" in
-    *Username*) echo "$GITHUB_USER" ;;
-    *Password*) echo "$GITHUB_TOKEN" ;;
-esac
-EOF
+                    echo "======================================"
+                    echo "Kubernetes Pods"
+                    echo "======================================"
 
-                        chmod 700 "$WORKSPACE/git-askpass.sh"
+                    kubectl get pods -o wide
 
-                        trap 'rm -f "$WORKSPACE/git-askpass.sh"' EXIT
+                    echo "======================================"
+                    echo "Kubernetes Services"
+                    echo "======================================"
 
-                        export GIT_ASKPASS="$WORKSPACE/git-askpass.sh"
-                        export GIT_TERMINAL_PROMPT=0
-
-                        git push origin HEAD:main
-                    '''
-                }
+                    kubectl get services
+                """
             }
         }
     }
@@ -243,26 +238,44 @@ EOF
 
         success {
             echo """
-            Build ${BUILD_NUMBER} completed successfully.
+            ======================================
+            EKART CI/CD PIPELINE SUCCESS
+            ======================================
+
+            Build:
+            ${BUILD_NUMBER}
 
             Docker image:
             ${DOCKER_IMAGE}:${BUILD_NUMBER}
 
-            Kubernetes manifest was updated and pushed to GitHub.
+            Docker image pushed to Docker Hub.
 
-            Argo CD should detect the Git change and synchronize
-            the Kubernetes deployment.
+            Kubernetes deployment completed.
+
+            Jenkins deployed EKART directly to
+            the Kubernetes cluster.
+
+            Argo CD is NOT used.
+            ======================================
             """
         }
 
         failure {
             echo """
-            Pipeline failed at build ${BUILD_NUMBER}.
+            ======================================
+            EKART PIPELINE FAILED
+            ======================================
 
-            The current Kubernetes deployment remains unchanged
-            because Jenkins does not run kubectl apply.
+            Build:
+            ${BUILD_NUMBER}
+
+            Check the failed stage above.
+
+            Kubernetes deployment may not have
+            been changed if the failure occurred
+            before the deployment stage.
+            ======================================
             """
         }
     }
 }
-
