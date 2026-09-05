@@ -51,9 +51,9 @@ variable "disk_sizes_gb" {
   description = "Root EBS volume size (GB) per server"
   type        = map(number)
   default = {
-    jenkins    = 30
-    sonarqube  = 30
-    k8s_master = 20
+    jenkins     = 30
+    sonarqube   = 30
+    k8s_master  = 20
     k8s_worker1 = 20
     k8s_worker2 = 20
   }

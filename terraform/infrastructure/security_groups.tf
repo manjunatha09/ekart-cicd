@@ -103,7 +103,7 @@ resource "aws_security_group_rule" "k8s_internal" {
   protocol                 = "-1"
   security_group_id        = aws_security_group.k8s.id
   source_security_group_id = aws_security_group.k8s.id
-  description               = "Allow all traffic between Kubernetes nodes"
+  description              = "Allow all traffic between Kubernetes nodes"
 }
 
 # Jenkins -> Kubernetes API (6443), scoped to the Jenkins SG rather than
@@ -115,5 +115,5 @@ resource "aws_security_group_rule" "jenkins_to_k8s_api" {
   protocol                 = "tcp"
   security_group_id        = aws_security_group.k8s.id
   source_security_group_id = aws_security_group.jenkins.id
-  description               = "Allow Jenkins to reach the Kubernetes API server"
+  description              = "Allow Jenkins to reach the Kubernetes API server"
 }
