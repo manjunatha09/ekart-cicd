@@ -34,10 +34,6 @@ variable "key_pair_name" {
   default     = "awspem"
 }
 
-variable "admin_cidr" {
-  description = "Your public IP in CIDR form (e.g. 49.x.x.x/32), used to restrict SSH access. Do not commit your real IP here — pass it via terraform.tfvars or -var on the command line."
-  type        = string
-}
 
 variable "instance_type" {
   description = "EC2 instance type for all five servers"
