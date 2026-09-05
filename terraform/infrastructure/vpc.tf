@@ -49,7 +49,7 @@ resource "aws_route_table_association" "public" {
 # a region-specific/stale AMI ID.
 data "aws_ami" "ubuntu_24_04" {
   most_recent = true
-  owners      = [var.ubuntu_ami_owner]
+  owners      = [099720109477]
 
   filter {
     name   = "name"
