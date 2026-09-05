@@ -1,4 +1,3 @@
-```groovy
 // Jenkinsfile — ekart-cicd
 //
 // Flow:
@@ -79,19 +78,19 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-    steps {
-        dir('app') {
-            withSonarQubeEnv('sonarqube-server') {
-                sh """
-                    mvn -B \
-                      org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-                      -Dsonar.projectKey=ekart-cicd \
-                      -Dsonar.host.url=${SONAR_HOST_URL}
-                """
+            steps {
+                dir('app') {
+                    withSonarQubeEnv('sonarqube-server') {
+                        sh """
+                            mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+                              -Dsonar.projectKey=ekart-cicd \
+                              -Dsonar.host.url=${SONAR_HOST_URL}
+                        """
+                    }
+                }
             }
         }
-    }
-}
+
         stage('SonarQube Quality Gate') {
             steps {
                 timeout(time: 5, unit: 'MINUTES') {
@@ -169,6 +168,8 @@ pipeline {
                             --password-stdin
 
                         docker push "${DOCKER_IMAGE}:${BUILD_NUMBER}"
+
+                        docker logout || true
                     '''
                 }
             }
@@ -208,8 +209,6 @@ pipeline {
                           -m "[ci skip] deploy: ${DOCKER_IMAGE}:${BUILD_NUMBER}" \
                           || echo "Nothing to commit"
 
-                        # Use Git's askpass mechanism instead of putting
-                        # the GitHub token directly into the remote URL.
                         cat > "$WORKSPACE/git-askpass.sh" <<'EOF'
 #!/bin/sh
 case "$1" in
@@ -220,12 +219,12 @@ EOF
 
                         chmod 700 "$WORKSPACE/git-askpass.sh"
 
+                        trap 'rm -f "$WORKSPACE/git-askpass.sh"' EXIT
+
                         export GIT_ASKPASS="$WORKSPACE/git-askpass.sh"
                         export GIT_TERMINAL_PROMPT=0
 
                         git push origin HEAD:main
-
-                        rm -f "$WORKSPACE/git-askpass.sh"
                     '''
                 }
             }
@@ -266,4 +265,4 @@ EOF
         }
     }
 }
-```
+
