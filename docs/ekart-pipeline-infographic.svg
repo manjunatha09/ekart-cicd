@@ -1,0 +1,326 @@
+<svg viewBox="0 0 1900 1020" xmlns="http://www.w3.org/2000/svg">
+<defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+        <path d="M0,0 L9,4 L0,8 Z" fill="#1A1A2E"/>
+      </marker>
+      <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+        <path d="M0,0 L9,4 L0,8 Z" fill="#9AA0AE"/>
+      </marker>
+    </defs>
+<rect x="0" y="0" width="1900" height="1020" rx="0" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<text x="950.0" y="42" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">EKART-CICD  —  DEVOPS PIPELINE</text>
+<text x="950.0" y="68" font-family="Arial, Helvetica, sans-serif" font-size="14.5" font-weight="600" fill="#6B7280" text-anchor="middle" letter-spacing="0.5px">by Manjunatha C   ·   linkedin.com/in/manjunatha-c1   ·   github.com/manjunatha09</text>
+<text x="90" y="118" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" fill="#9AA0AE" text-anchor="start" letter-spacing="0.5px">PROVISIONING  (terraform apply — one time)</text>
+<text x="90" y="470" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" fill="#D64545" text-anchor="start" letter-spacing="0.5px">STAGE 1 — BUILD, TEST &amp; CODE QUALITY</text>
+<text x="1080" y="470" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" fill="#D64545" text-anchor="start" letter-spacing="0.5px">STAGE 2 — PACKAGE &amp; IMAGE SECURITY</text>
+<circle cx="100" cy="168" r="42" fill="#000000" opacity="0.10"/>
+<circle cx="100" cy="165" r="42" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="100" cy="165" r="38" fill="url(#grad_E0A315)" stroke="none" stroke-width="0"/>
+<circle cx="100" cy="165" r="38" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="100" cy="165" r="42" fill="none" stroke="#E0A315" stroke-width="3"/>
+<circle cx="86" cy="165" r="12" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+<rect x="98" y="161" width="26" height="8" rx="0" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="116" y="161" width="6" height="12" rx="0" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="108" y="161" width="6" height="10" rx="0" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<text x="100" y="231" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">IAM KEY</text>
+<circle cx="320" cy="168" r="42" fill="#000000" opacity="0.10"/>
+<circle cx="320" cy="165" r="42" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="320" cy="165" r="38" fill="url(#grad_F2994A)" stroke="none" stroke-width="0"/>
+<circle cx="320" cy="165" r="38" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="320" cy="165" r="42" fill="none" stroke="#F2994A" stroke-width="3"/>
+<rect x="298" y="149" width="44" height="32" rx="4" fill="#F4F4F8" stroke="#F2994A" stroke-width="4"/>
+<circle cx="320" cy="165" r="10" fill="none" stroke="#F2994A" stroke-width="4"/>
+<line x1="330.0" y1="165.0" x2="335.0" y2="165.0" stroke="#F2994A" stroke-width="3"/>
+<line x1="327.1" y1="172.1" x2="330.6" y2="175.6" stroke="#F2994A" stroke-width="3"/>
+<line x1="320.0" y1="175.0" x2="320.0" y2="180.0" stroke="#F2994A" stroke-width="3"/>
+<line x1="312.9" y1="172.1" x2="309.4" y2="175.6" stroke="#F2994A" stroke-width="3"/>
+<line x1="310.0" y1="165.0" x2="305.0" y2="165.0" stroke="#F2994A" stroke-width="3"/>
+<line x1="312.9" y1="157.9" x2="309.4" y2="154.4" stroke="#F2994A" stroke-width="3"/>
+<line x1="320.0" y1="155.0" x2="320.0" y2="150.0" stroke="#F2994A" stroke-width="3"/>
+<line x1="327.1" y1="157.9" x2="330.6" y2="154.4" stroke="#F2994A" stroke-width="3"/>
+<text x="320" y="231" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">AWS CLI</text>
+<text x="320" y="248" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">CONFIGURE</text>
+<circle cx="540" cy="168" r="42" fill="#000000" opacity="0.10"/>
+<circle cx="540" cy="165" r="42" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="540" cy="165" r="38" fill="url(#grad_7C5CFF)" stroke="none" stroke-width="0"/>
+<circle cx="540" cy="165" r="38" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="540" cy="165" r="42" fill="none" stroke="#7C5CFF" stroke-width="3"/>
+<polygon points="530,145 544,159 530,173 516,159" fill="#FFFFFF" opacity="0.55"/>
+<polygon points="550,145 564,159 550,173 536,159" fill="#FFFFFF" opacity="0.75"/>
+<polygon points="540,161 554,175 540,189 526,175" fill="#FFFFFF" opacity="1.0"/>
+<text x="540" y="231" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">TERRAFORM</text>
+<text x="540" y="248" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">BOOTSTRAP</text>
+<circle cx="540" cy="333" r="42" fill="#000000" opacity="0.10"/>
+<circle cx="540" cy="330" r="42" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="540" cy="330" r="38" fill="url(#grad_27AE60)" stroke="none" stroke-width="0"/>
+<circle cx="540" cy="330" r="38" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="540" cy="330" r="42" fill="none" stroke="#27AE60" stroke-width="3"/>
+<polygon points="524,316 556,316 551,346 529,346" fill="none" stroke="#FFFFFF" stroke-width="5"/>
+<path d="M 524 316 Q 540 304 556 316" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+<text x="540" y="396" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">S3 STATE</text>
+<text x="540" y="413" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">BUCKET</text>
+<circle cx="780" cy="168" r="42" fill="#000000" opacity="0.10"/>
+<circle cx="780" cy="165" r="42" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="780" cy="165" r="38" fill="url(#grad_7C5CFF)" stroke="none" stroke-width="0"/>
+<circle cx="780" cy="165" r="38" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="780" cy="165" r="42" fill="none" stroke="#7C5CFF" stroke-width="3"/>
+<polygon points="770,145 784,159 770,173 756,159" fill="#FFFFFF" opacity="0.55"/>
+<polygon points="790,145 804,159 790,173 776,159" fill="#FFFFFF" opacity="0.75"/>
+<polygon points="780,161 794,175 780,189 766,175" fill="#FFFFFF" opacity="1.0"/>
+<text x="780" y="231" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">TERRAFORM</text>
+<text x="780" y="248" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">INFRA</text>
+<rect x="930.0" y="123.0" width="300" height="90" rx="14" fill="#000000" fill-opacity="0.08"/>
+<rect x="930.0" y="120.0" width="300" height="90" rx="14" fill="#FFFFFF" stroke="#F2994A" stroke-width="4"/>
+<rect x="930.0" y="120.0" width="300" height="90" rx="14" fill="#F2994A" fill-opacity="0.07"/>
+<rect x="942.0" y="147" width="44" height="12" rx="2" fill="#F4F4F8" stroke="#F2994A" stroke-width="3"/>
+<circle cx="978.0" cy="153" r="2.4" fill="#F2994A" stroke="none" stroke-width="0"/>
+<rect x="942.0" y="163" width="44" height="12" rx="2" fill="#F4F4F8" stroke="#F2994A" stroke-width="3"/>
+<circle cx="978.0" cy="169" r="2.4" fill="#F2994A" stroke="none" stroke-width="0"/>
+<rect x="942.0" y="179" width="44" height="12" rx="2" fill="#F4F4F8" stroke="#F2994A" stroke-width="3"/>
+<circle cx="978.0" cy="185" r="2.4" fill="#F2994A" stroke="none" stroke-width="0"/>
+<text x="1014.0" y="161" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" fill="#1A1A2E" text-anchor="start" letter-spacing="0.5px">AWS INFRASTRUCTURE</text>
+<text x="1014.0" y="182" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#6B7280" text-anchor="start" letter-spacing="0.5px">5x EC2 + VPC + NLB</text>
+<circle cx="1320" cy="168" r="42" fill="#000000" opacity="0.10"/>
+<circle cx="1320" cy="165" r="42" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1320" cy="165" r="38" fill="url(#grad_64748B)" stroke="none" stroke-width="0"/>
+<circle cx="1320" cy="165" r="38" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1320" cy="165" r="42" fill="none" stroke="#64748B" stroke-width="3"/>
+<circle cx="1320" cy="153" r="9" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<path d="M 1306 181 Q 1320 159 1334 181 Z" fill="#FFFFFF"/>
+<text x="1320" y="231" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">DEVELOPER</text>
+<circle cx="1540" cy="168" r="42" fill="#000000" opacity="0.10"/>
+<circle cx="1540" cy="165" r="42" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1540" cy="165" r="38" fill="url(#grad_24292E)" stroke="none" stroke-width="0"/>
+<circle cx="1540" cy="165" r="38" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1540" cy="165" r="42" fill="none" stroke="#24292E" stroke-width="3"/>
+<circle cx="1526" cy="153" r="6" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1554" cy="153" r="6" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1540" cy="179" r="6" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<path d="M 1526 159 L 1526 169 Q 1526 179 1536 179" stroke="#FFFFFF" stroke-width="3.5" fill="none"/>
+<path d="M 1554 159 L 1554 169 Q 1554 179 1544 179" stroke="#FFFFFF" stroke-width="3.5" fill="none"/>
+<text x="1540" y="231" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">GITHUB</text>
+<text x="1540" y="248" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">REPO</text>
+<path d="M 142 165 L 278 165" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<path d="M 362 165 L 498 165" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<path d="M 540 202 L 540 288" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<path d="M 582 165 L 738 165" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<path d="M 822 165 L 928 165" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<path d="M 1362 165 L 1498 165" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<rect x="1393.2" y="138" width="73.6" height="20" rx="0" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<text x="1430" y="153" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="700" fill="#D64545" text-anchor="middle" letter-spacing="0.5px">git push</text>
+<circle cx="1300" cy="333" r="50" fill="#000000" opacity="0.10"/>
+<circle cx="1300" cy="330" r="50" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1300" cy="330" r="46" fill="url(#grad_D64545)" stroke="none" stroke-width="0"/>
+<circle cx="1300" cy="330" r="46" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1300" cy="330" r="50" fill="none" stroke="#D64545" stroke-width="3"/>
+<circle cx="1300" cy="330" r="16" fill="none" stroke="#FFFFFF" stroke-width="5"/>
+<line x1="1316.0" y1="330.0" x2="1321.0" y2="330.0" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1313.9" y1="338.0" x2="1318.2" y2="340.5" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1308.0" y1="343.9" x2="1310.5" y2="348.2" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1300.0" y1="346.0" x2="1300.0" y2="351.0" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1292.0" y1="343.9" x2="1289.5" y2="348.2" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1286.1" y1="338.0" x2="1281.8" y2="340.5" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1284.0" y1="330.0" x2="1279.0" y2="330.0" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1286.1" y1="322.0" x2="1281.8" y2="319.5" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1292.0" y1="316.1" x2="1289.5" y2="311.8" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1300.0" y1="314.0" x2="1300.0" y2="309.0" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1308.0" y1="316.1" x2="1310.5" y2="311.8" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1313.9" y1="322.0" x2="1318.2" y2="319.5" stroke="#FFFFFF" stroke-width="4"/>
+<path d="M 1293 330 l 5 6 l 9 -12" stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1300" y="404" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">JENKINS</text>
+<path d="M 1540 202 L 1330 290" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<rect x="1398.0" y="247" width="124.0" height="20" rx="0" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<text x="1460" y="262" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="700" fill="#D64545" text-anchor="middle" letter-spacing="0.5px">webhook trigger</text>
+<path d="M 1230 202 L 1290 284" stroke="#9AA0AE" stroke-width="3" fill="none" stroke-dasharray="8 6" marker-end="url(#arrow-gray)"/>
+<rect x="1082.8" y="262" width="174.4" height="20" rx="0" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<text x="1170" y="277" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="700" fill="#9AA0AE" text-anchor="middle" letter-spacing="0.5px">provisions Jenkins EC2</text>
+<circle cx="280" cy="563" r="44" fill="#000000" opacity="0.10"/>
+<circle cx="280" cy="560" r="44" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="280" cy="560" r="40" fill="url(#grad_B5651D)" stroke="none" stroke-width="0"/>
+<circle cx="280" cy="560" r="40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="280" cy="560" r="44" fill="none" stroke="#B5651D" stroke-width="3"/>
+<path d="M 266 574 Q 264 544 294 546 Q 296 576 266 574 Z" fill="#B5651D"/>
+<line x1="268" y1="572" x2="292" y2="548" stroke="#FFFFFF" stroke-width="2.5"/>
+<text x="280" y="628" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">MAVEN BUILD</text>
+<text x="280" y="645" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">&amp; UNIT TEST</text>
+<path d="M 1260 374 L 294 502" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<circle cx="500" cy="563" r="44" fill="#000000" opacity="0.10"/>
+<circle cx="500" cy="560" r="44" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="500" cy="560" r="40" fill="url(#grad_17A2B8)" stroke="none" stroke-width="0"/>
+<circle cx="500" cy="560" r="40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="500" cy="560" r="44" fill="none" stroke="#17A2B8" stroke-width="3"/>
+<path d="M 492 554.4 A 8 8 0 0 1 492 565.6" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+<path d="M 508 554.4 A 8 8 0 0 0 508 565.6" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+<path d="M 485 549.5 A 15 15 0 0 1 485 570.5" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+<path d="M 515 549.5 A 15 15 0 0 0 515 570.5" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+<path d="M 478 544.6 A 22 22 0 0 1 478 575.4" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+<path d="M 522 544.6 A 22 22 0 0 0 522 575.4" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+<circle cx="500" cy="560" r="4" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<text x="500" y="628" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">SONARQUBE</text>
+<text x="500" y="645" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">CODE ANALYSIS</text>
+<path d="M 1260 374 L 514 502" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<circle cx="720" cy="563" r="44" fill="#000000" opacity="0.10"/>
+<circle cx="720" cy="560" r="44" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="720" cy="560" r="40" fill="url(#grad_E0A315)" stroke="none" stroke-width="0"/>
+<circle cx="720" cy="560" r="40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="720" cy="560" r="44" fill="none" stroke="#E0A315" stroke-width="3"/>
+<path d="M 720 540 L 736 548 L 736 566 Q 736 580 720 584 Q 704 580 704 566 L 704 548 Z" fill="#E0A315"/>
+<rect x="717.5" y="552" width="5" height="14" rx="0" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="720" cy="571" r="2.6" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<text x="720" y="628" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">OWASP</text>
+<text x="720" y="645" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">DEPENDENCY CHECK</text>
+<path d="M 1260 374 L 734 502" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<circle cx="940" cy="563" r="44" fill="#000000" opacity="0.10"/>
+<circle cx="940" cy="560" r="44" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="940" cy="560" r="40" fill="url(#grad_2D9CDB)" stroke="none" stroke-width="0"/>
+<circle cx="940" cy="560" r="40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="940" cy="560" r="44" fill="none" stroke="#2D9CDB" stroke-width="3"/>
+<circle cx="936" cy="556" r="12" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="944" y1="564" x2="956" y2="576" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+<text x="940" y="628" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">TRIVY</text>
+<text x="940" y="645" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">FILESYSTEM SCAN</text>
+<path d="M 1260 374 L 954 502" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<circle cx="1160" cy="563" r="44" fill="#000000" opacity="0.10"/>
+<circle cx="1160" cy="560" r="44" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1160" cy="560" r="40" fill="url(#grad_2D9CDB)" stroke="none" stroke-width="0"/>
+<circle cx="1160" cy="560" r="40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1160" cy="560" r="44" fill="none" stroke="#2D9CDB" stroke-width="3"/>
+<rect x="1134" y="548" width="16" height="16" rx="2" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="1152" y="548" width="16" height="16" rx="2" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="1170" y="548" width="16" height="16" rx="2" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="1143" y="536" width="16" height="16" rx="2" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="1161" y="536" width="16" height="16" rx="2" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<path d="M 1134 570 Q 1160 586 1190 568" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+<text x="1160" y="628" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">DOCKER BUILD</text>
+<text x="1160" y="645" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">&amp; PUSH</text>
+<path d="M 1340 370 L 1146 502" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<circle cx="1400" cy="563" r="44" fill="#000000" opacity="0.10"/>
+<circle cx="1400" cy="560" r="44" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1400" cy="560" r="40" fill="url(#grad_2D9CDB)" stroke="none" stroke-width="0"/>
+<circle cx="1400" cy="560" r="40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1400" cy="560" r="44" fill="none" stroke="#2D9CDB" stroke-width="3"/>
+<circle cx="1396" cy="556" r="12" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+<line x1="1404" y1="564" x2="1416" y2="576" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+<text x="1400" y="628" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">TRIVY</text>
+<text x="1400" y="645" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">IMAGE SCAN</text>
+<path d="M 1340 370 L 1386 502" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<path d="M 1160 604 L 1356 560" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<path d="M 1400 604 L 1400 770 L 300 770 L 300 786" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<rect x="690.4" y="745" width="419.2" height="20" rx="0" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<text x="900" y="760" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="700" fill="#D64545" text-anchor="middle" letter-spacing="0.5px">Jenkins rewrites image tag in kubernetes/deployment.yaml</text>
+<circle cx="300" cy="833" r="44" fill="#000000" opacity="0.10"/>
+<circle cx="300" cy="830" r="44" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="300" cy="830" r="40" fill="url(#grad_6B7280)" stroke="none" stroke-width="0"/>
+<circle cx="300" cy="830" r="40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="300" cy="830" r="44" fill="none" stroke="#6B7280" stroke-width="3"/>
+<rect x="286" y="812" width="24" height="32" rx="2" fill="#F4F4F8" stroke="#6B7280" stroke-width="3"/>
+<line x1="292" y1="822" x2="304" y2="822" stroke="#6B7280" stroke-width="2.5"/>
+<line x1="292" y1="830" x2="304" y2="830" stroke="#6B7280" stroke-width="2.5"/>
+<line x1="292" y1="838" x2="304" y2="838" stroke="#6B7280" stroke-width="2.5"/>
+<path d="M 308 838 L 320 826 L 316 822 L 304 834 Z" fill="#6B7280"/>
+<text x="300" y="898" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">UPDATE</text>
+<text x="300" y="915" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">MANIFEST</text>
+<circle cx="560" cy="833" r="44" fill="#000000" opacity="0.10"/>
+<circle cx="560" cy="830" r="44" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="560" cy="830" r="40" fill="url(#grad_1A1A2E)" stroke="none" stroke-width="0"/>
+<circle cx="560" cy="830" r="40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="560" cy="830" r="44" fill="none" stroke="#1A1A2E" stroke-width="3"/>
+<rect x="540" y="814" width="40" height="32" rx="4" fill="#1A1A2E" stroke="none" stroke-width="0"/>
+<path d="M 548 824 l 8 6 l -8 6" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="562" y1="836" x2="572" y2="836" stroke="#FFFFFF" stroke-width="3"/>
+<text x="560" y="898" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">kubectl apply</text>
+<text x="560" y="915" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">(DIRECT — NO ARGOCD)</text>
+<rect x="770.0" y="788.0" width="260" height="90" rx="14" fill="#000000" fill-opacity="0.08"/>
+<rect x="770.0" y="785.0" width="260" height="90" rx="14" fill="#FFFFFF" stroke="#7C5CFF" stroke-width="4"/>
+<rect x="770.0" y="785.0" width="260" height="90" rx="14" fill="#7C5CFF" fill-opacity="0.07"/>
+<polygon points="817.0,808.5 817.0,823.5 804.0,831.0 791.0,823.5 791.0,808.5 804.0,801.0" fill="#7C5CFF"/>
+<polygon points="790.4,838.0 790.4,850.0 780.0,856.0 769.6,850.0 769.6,838.0 780.0,832.0" fill="#7C5CFF"/>
+<polygon points="838.4,838.0 838.4,850.0 828.0,856.0 817.6,850.0 817.6,838.0 828.0,832.0" fill="#7C5CFF"/>
+<line x1="804.0" y1="828" x2="780.0" y2="834" stroke="#7C5CFF" stroke-width="2.5"/>
+<line x1="804.0" y1="828" x2="828.0" y2="834" stroke="#7C5CFF" stroke-width="2.5"/>
+<text x="854.0" y="826" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" fill="#1A1A2E" text-anchor="start" letter-spacing="0.5px">KUBERNETES CLUSTER</text>
+<text x="854.0" y="847" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" fill="#6B7280" text-anchor="start" letter-spacing="0.5px">kubeadm · master + 2 workers</text>
+<circle cx="1200" cy="833" r="44" fill="#000000" opacity="0.10"/>
+<circle cx="1200" cy="830" r="44" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1200" cy="830" r="40" fill="url(#grad_EB5C8D)" stroke="none" stroke-width="0"/>
+<circle cx="1200" cy="830" r="40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1200" cy="830" r="44" fill="none" stroke="#EB5C8D" stroke-width="3"/>
+<line x1="1184" y1="830" x2="1202" y2="830" stroke="#FFFFFF" stroke-width="5"/>
+<line x1="1202" y1="830" x2="1218" y2="816" stroke="#FFFFFF" stroke-width="5"/>
+<line x1="1202" y1="830" x2="1218" y2="844" stroke="#FFFFFF" stroke-width="5"/>
+<circle cx="1184" cy="830" r="5" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1218" cy="816" r="5" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1218" cy="844" r="5" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<text x="1200" y="898" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">NETWORK LOAD</text>
+<text x="1200" y="915" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">BALANCER</text>
+<circle cx="1440" cy="833" r="44" fill="#000000" opacity="0.10"/>
+<circle cx="1440" cy="830" r="44" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1440" cy="830" r="40" fill="url(#grad_27AE60)" stroke="none" stroke-width="0"/>
+<circle cx="1440" cy="830" r="40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1440" cy="830" r="44" fill="none" stroke="#27AE60" stroke-width="3"/>
+<rect x="1420" y="814" width="40" height="32" rx="3" fill="#F4F4F8" stroke="#FFFFFF" stroke-width="3"/>
+<rect x="1420" y="814" width="40" height="8" rx="3" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<circle cx="1434" cy="836" r="7" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+<line x1="1439" y1="841" x2="1448" y2="846" stroke="#FFFFFF" stroke-width="2.5"/>
+<text x="1440" y="898" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">EKART APP</text>
+<text x="1440" y="915" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="700" fill="#1A1A2E" text-anchor="middle" letter-spacing="0.5px">LIVE</text>
+<path d="M 344 830 L 516 830" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<path d="M 604 830 L 770 830" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<path d="M 1030 830 L 1156 830" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<path d="M 1244 830 L 1396 830" stroke="#1A1A2E" stroke-width="3" fill="none"  marker-end="url(#arrow)"/>
+<rect x="1560" y="900" width="300" height="74" rx="16" fill="#1A1A2E" stroke="none" stroke-width="0"/>
+<text x="1710" y="930" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5px">MANJUNATHA C</text>
+<text x="1710" y="953" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="600" fill="#B9C1D9" text-anchor="middle" letter-spacing="0.5px">linkedin.com/in/manjunatha-c1</text>
+<defs><linearGradient id="grad_17A2B8" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#17A2B8" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#17A2B8" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_1A1A2E" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#1A1A2E" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#1A1A2E" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_24292E" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#24292E" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#24292E" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_27AE60" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#27AE60" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#27AE60" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_2D9CDB" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#2D9CDB" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#2D9CDB" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_64748B" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#64748B" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#64748B" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_6B7280" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6B7280" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#6B7280" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_7C5CFF" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#7C5CFF" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#7C5CFF" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_B5651D" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#B5651D" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#B5651D" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_D64545" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#D64545" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#D64545" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_E0A315" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#E0A315" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#E0A315" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_EB5C8D" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#EB5C8D" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#EB5C8D" stop-opacity="0.72"/>
+        </linearGradient>
+<linearGradient id="grad_F2994A" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#F2994A" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#F2994A" stop-opacity="0.72"/>
+        </linearGradient></defs>
+</svg>
