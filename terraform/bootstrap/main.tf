@@ -40,7 +40,7 @@ resource "aws_s3_bucket" "tf_state" {
   # Safety net: prevents `terraform destroy` from silently wiping the
   # state bucket for the main infrastructure project.
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
